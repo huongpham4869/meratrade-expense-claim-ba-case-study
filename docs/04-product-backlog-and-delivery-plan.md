@@ -2,12 +2,9 @@
 
 *MeraTrade Distribution – Expense Claim & Approval System*
 
-> [!NOTE]
-> MeraTrade Distribution is a fictional company and all people and data are invented. Version 4, 27 Oct 2026. This document is complete for portfolio purposes but has **not** been approved as a business baseline. Values in [square brackets] are examples or assumptions, not company policy.
-
 # 1. Introduction
 
-This document holds the product backlog: the user stories with their acceptance criteria, and a proposed delivery plan. Requirement IDs (FR) refer to the SRS; stories US-01 to US-16 match FR-01 to FR-16 one to one. The Validation Workbook traces each story to its test cases. Priorities use MoSCoW to show what the MVP needs, not the build order. Acceptance criteria that depend on an open question in the SRS stay provisional until it is answered. Criteria based on a BA recommendation (SRS Appendix A) say so.
+This document holds the product backlog: the user stories with their acceptance criteria, and a proposed delivery plan. Requirement IDs (FR) refer to the SRS; stories US-01 to US-16 match FR-01 to FR-16 one to one. Priorities use MoSCoW to show what the MVP needs, not the build order. Acceptance criteria that depend on an open question in the SRS stay provisional until it is answered. Criteria based on a BA recommendation (SRS Appendix A) say so.
 
 # 2. Product Backlog
 

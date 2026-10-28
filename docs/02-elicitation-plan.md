@@ -2,9 +2,6 @@
 
 *MeraTrade Distribution – Expense Claim & Approval System*
 
-> [!NOTE]
-> MeraTrade Distribution is a fictional company and all people and data are invented. Version 4, 27 Oct 2026. This document is complete for portfolio purposes but has **not** been approved as a business baseline. Values in [square brackets] are examples or assumptions, not company policy.
-
 # 1. Purpose
 
 The SRS is built on assumptions taken from common practice. This plan shows how they would be checked: whom to ask, what to ask, and which requirements could change with each answer. Interview participants act as proxies for MeraTrade roles. Their answers show how similar companies work, not how MeraTrade works, so the key rules still need confirmation from MeraTrade stakeholders.

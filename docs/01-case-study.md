@@ -1,11 +1,6 @@
 # MeraTrade – Expense Claim & Approval System: BA Case Study
 
-**Business Analyst · Independent Portfolio Project** · Version 4 · 27 Oct 2026
-
-> [!NOTE]
-> This is a simulated case study. MeraTrade Distribution, its people and its data are fictional. I have not interviewed any stakeholder, built the system or run any test. The document set is complete for portfolio purposes but has not been approved as a business baseline. Where a decision was needed to finish the case study, it is marked as a BA recommendation.
->
-> Values in [square brackets] are examples, not company policy.
+**Business Analyst · Independent Portfolio Project**
 
 ---
 
@@ -30,7 +25,7 @@ Each employee has one system role. Line Manager is not a system role: it comes f
 - Analysed the problem and defined the objectives and the scope of the **MVP** (minimum viable product).
 - Wrote the SRS: requirements, business rules, wireframes, diagrams and data.
 - Wrote a backlog of 16 user stories with acceptance criteria.
-- Designed traceability and test cases for UAT.
+- Wrote acceptance criteria that can be turned into UAT test cases.
 - Planned the interviews that would check the assumptions.
 
 Tools: Word, Excel, draw.io (diagrams) and wireframes drawn as SVG that can be imported into Figma.
@@ -169,34 +164,34 @@ The document set contains:
 
 - **SRS:** 16 functional requirements, 12 business rules and 8 non-functional requirements.
 - **Backlog:** 16 user stories with 74 acceptance criteria. Each user story maps to exactly one functional requirement.
-- **Validation Workbook:** 22 UAT test cases. Every acceptance criterion is covered by a test case, but no test case has been run.
 
 ### 6.1 Example scenarios
 
-| # | Scenario | System response | Test case |
-|---|---|---|---|
-| 1 | Submit a claim with a total exactly equal to the threshold [5,000,000 VND], then a claim above it. | The first needs Level 1 approval only. The second needs Level 1 and Level 2. | TC-02 |
-| 2 | A claim has one line missing a required receipt and another missing category, date and amount. | Submission is blocked and all errors are shown at once, on the lines that have them. | TC-03 |
-| 3 | An employee has no Line Manager, or the Line Manager's account is deactivated. | Submission is blocked with a message to contact the System Administrator. | TC-10 |
-| 4 | A Finance Officer submits a claim above the threshold, and their Line Manager is also the Finance Manager. | One approval completes both levels, and the history records both. | TC-11 |
-| 5 | A claim is returned; the employee changes one line's expense date, adds a new line and resubmits. | The old line's lateness is measured from its own first-submitted date. The new line is measured from the resubmission date. | TC-06 |
-| 6 | An employee enters an invoice that duplicates one in another employee's paid claim. | The claimant only sees a warning. The approver sees the matching claim. If Finance chooses "Duplicate", the claim cannot be verified. | TC-08 |
-| 7 | Finance has exported a file but does not know whether the accounting software accepted it. | The claim is Awaiting Confirmation: it cannot be exported again, returned or paid. | TC-13 |
-| 8 | Two Finance Officers open the export screen. The second, on an outdated screen, exports a claim the first one has just exported. | The claim is only in the first batch. The second officer sees the reason "No longer eligible". | TC-15 |
-| 9 | A Finance Officer opens a batch that contains their own claim, exported by a colleague. Then the System Administrator opens the batch list. | There is no result option for the officer's own claim; the colleague records it, and the history records batch, reason, person and time. The System Administrator is refused. | TC-22 |
+| # | Scenario | System response |
+|---|---|---|
+| 1 | Submit a claim with a total exactly equal to the threshold [5,000,000 VND], then a claim above it. | The first needs Level 1 approval only. The second needs Level 1 and Level 2. |
+| 2 | A claim has one line missing a required receipt and another missing category, date and amount. | Submission is blocked and all errors are shown at once, on the lines that have them. |
+| 3 | An employee has no Line Manager, or the Line Manager's account is deactivated. | Submission is blocked with a message to contact the System Administrator. |
+| 4 | A Finance Officer submits a claim above the threshold, and their Line Manager is also the Finance Manager. | One approval completes both levels, and the history records both. |
+| 5 | A claim is returned; the employee changes one line's expense date, adds a new line and resubmits. | The old line's lateness is measured from its own first-submitted date. The new line is measured from the resubmission date. |
+| 6 | An employee enters an invoice that duplicates one in another employee's paid claim. | The claimant only sees a warning. The approver sees the matching claim. If Finance chooses "Duplicate", the claim cannot be verified. |
+| 7 | Finance has exported a file but does not know whether the accounting software accepted it. | The claim is Awaiting Confirmation: it cannot be exported again, returned or paid. |
+| 8 | Two Finance Officers open the export screen. The second, on an outdated screen, exports a claim the first one has just exported. | The claim is only in the first batch. The second officer sees the reason "No longer eligible". |
+| 9 | A Finance Officer opens a batch that contains their own claim, exported by a colleague. Then the System Administrator opens the batch list. | There is no result option for the officer's own claim; the colleague records it, and the history records batch, reason, person and time. The System Administrator is refused. |
 
-### 6.2 Traceability for the highest-risk flows
+### 6.2 The highest-risk flows
 
-This table traces six high-risk flows only. It does not replace the full RTM in the [Validation Workbook](05-validation-workbook.md).
+This table lists six high-risk flows and the business rule that controls each.
 
-| Risk | Rule | Expected outcome | Test case |
-|---|---|---|---|
-| No approver, or one person assigned at both levels | BR-04, BR-05 | A claim without an approver cannot be submitted. One person at both levels does not approve twice, but the history records both levels. | TC-10, TC-11 (waiting for OQ-01) |
-| A claim is returned and resubmitted | BR-03, BR-08 | Approval restarts at Level 1. No line is counted late just because of approval waiting time. | TC-06, TC-07 |
-| A duplicate warning is wrong | BR-10 | A genuine repeated expense can still be verified after Finance chooses "Not a duplicate". | TC-08, TC-09 |
-| The import result is unknown | BR-11, FR-10 | No re-export, return or payment until Finance records the result. | TC-13, TC-14 |
-| A claim is exported twice | BR-11 | A claim cannot be in two batches that are awaiting results. | TC-15. This test runs one step at a time; simultaneous actions need an extra technical check. |
-| Confirming the import result for one's own claim | BR-05, FR-10 | A claimant cannot record the import result, even if someone else exported the file. The System Administrator has no Finance permissions. | TC-22, TC-17. Requests sent outside the screens need an extra technical check. |
+| Risk | Rule | Expected outcome |
+|---|---|---|
+| No approver, or one person assigned at both levels | BR-04, BR-05 | A claim without an approver cannot be submitted. One person at both levels does not approve twice, but the history records both levels. This depends on OQ-01. |
+| A claim is returned and resubmitted | BR-03, BR-08 | Approval restarts at Level 1. No line is counted late just because of approval waiting time. |
+| A duplicate warning is wrong | BR-10 | A genuine repeated expense can still be verified after Finance chooses "Not a duplicate". |
+| The import result is unknown | BR-11, FR-10 | No re-export, return or payment until Finance records the result. |
+| A claim is exported twice | BR-11 | A claim cannot be in two batches that are awaiting results. Simultaneous actions need an extra technical check. |
+| Confirming the import result for one's own claim | BR-05, FR-10 | A claimant cannot record the import result, even if someone else exported the file. The System Administrator has no Finance permissions. Requests sent outside the screens need an extra technical check. |
+
 
 ---
 
@@ -232,7 +227,6 @@ This table traces six high-risk flows only. It does not replace the full RTM in 
 - I have not interviewed anyone. The [Elicitation Plan](02-elicitation-plan.md) is only a plan.
 - The CSV column mapping is an assumption and has not been checked against a real import template.
 - The case where the accounting software accepts only part of a claim is not resolved.
-- CR-01 in the Validation Workbook is a simulated change request and has not been approved.
 
 ### Most important open questions
 
@@ -263,7 +257,7 @@ The table only lists expected outcomes and proposed measures:
 
 - **There is no baseline and no target yet.** A target should only be set after the current state is measured. The Elicitation Plan describes how to measure it.
 - **There are no measured results.** Real results can only be measured after the system is in use.
-- **Test cases do not prove that the measures will improve.** They only check that the system does what the requirements say.
+- **Acceptance criteria do not prove that the measures will improve.** They only check that the system does what the requirements say.
 
 ---
 
@@ -274,4 +268,3 @@ The table only lists expected outcomes and proposed measures:
 | [02 Elicitation Plan](02-elicitation-plan.md) | Interview plan, questions, assumptions to confirm and baseline measures. |
 | [03 SRS](03-srs.md) | The full specification: process, requirements, business rules, wireframes, accounting export, data, decisions and open questions. |
 | [04 Product Backlog & Delivery Plan](04-product-backlog-and-delivery-plan.md) | 16 user stories, acceptance criteria and a proposed delivery plan. |
-| [05 Validation Workbook](05-validation-workbook.md) | RTM, test cases, test data and the impact analysis of CR-01. |

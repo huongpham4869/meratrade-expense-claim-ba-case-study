@@ -2,9 +2,6 @@
 
 *MeraTrade Distribution – Expense Claim & Approval System*
 
-> [!NOTE]
-> MeraTrade Distribution is a fictional company and all people and data are invented. Version 4, 27 Oct 2026. This document is complete for portfolio purposes but has **not** been approved as a business baseline. Values in [square brackets] are examples or assumptions, not company policy.
-
 # 1. Introduction
 
 ## 1.1 Purpose
@@ -96,7 +93,6 @@ The system manages expense claims from creation and submission through approval,
 | **MVP**          | Minimum viable product                         |
 | **NFR**          | Non-functional requirement                     |
 | **OQ**           | Open question                                  |
-| **RTM**          | Requirements traceability matrix               |
 | **SSO**          | Single sign-on with the company account        |
 | **UAT**          | User acceptance testing                        |
 | **UC**           | Use case                                       |
@@ -125,7 +121,7 @@ Table 4 lists the public sources used for desk research and the standards and no
 
 Chapter 2 describes the business context, users, environment and assumptions. Chapter 3 holds the claim lifecycle, the functional requirements, two use cases, the screens and the business rules. Chapter 4 covers quality requirements, chapter 5 the diagrams, chapter 6 the accounting export and other interfaces, chapter 7 the data model and chapter 8 how the requirements will be checked. The appendices hold the decision log and the open questions.
 
-Related documents: the Elicitation Plan shows how the assumptions will be checked; the Product Backlog & Delivery Plan holds the user stories and acceptance criteria; the Validation Workbook holds the traceability matrix and test cases. This SRS is the source for the wording of requirements and business rules.
+Related documents: the Elicitation Plan shows how the assumptions will be checked; the Product Backlog & Delivery Plan holds the user stories and acceptance criteria. This SRS is the source for the wording of requirements and business rules.
 
 # 2. Overall Description
 
@@ -1122,7 +1118,7 @@ If OQ-15 decides that the export must use the cost center code at submission, Ex
 
 ## 8.1 Verification Approach
 
-The requirements will be checked by UAT and by technical checks. The Validation Workbook holds the traceability matrix, the UAT test cases and the test data. No test has been run; this chapter describes the plan.
+The requirements will be checked by UAT and by technical checks. The acceptance criteria in the Product Backlog are the basis for UAT test cases. No test has been run; this chapter describes the plan.
 
 *Table 37. Planned checks*
 
